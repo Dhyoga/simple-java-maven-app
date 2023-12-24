@@ -24,8 +24,8 @@ node {
     stage('Deploy') {
         archiveArtifacts 'target/my-app-1.0-SNAPSHOT.jar'
         docker.build("myapp-java:latest");
-        sh "ssh-keyscan -H ec2-13-228-28-89.ap-southeast-1.compute.amazonaws.com >> ~/.ssh/known_hosts"
-        sh "/usr/bin/scp -i /var/jenkins_home/myapp-java-server.pem /var/jenkins_home/workspace/submission-cicd-pipeline-dhyoga/target/myapp-java-1.0-SNAPSHOT.jar ubuntu@ec2-13-228-28-89.ap-southeast-1.compute.amazonaws.com:/home/ubuntu/myapp-java-1.0-SNAPSHOT.jar"
+        sh "ssh-keyscan -H 13.228.28.89 >> ~/.ssh/known_hosts"
+        sh "/usr/bin/scp -i /var/jenkins_home/myapp-java-server.pem /var/jenkins_home/workspace/submission-cicd-pipeline-dhyoga/target/myapp-java-1.0-SNAPSHOT.jar ubuntu@13.228.28.89:/home/ubuntu/myapp-java-1.0-SNAPSHOT.jar"
         sh 'docker run --rm myapp-java'
         sleep 60
     }
